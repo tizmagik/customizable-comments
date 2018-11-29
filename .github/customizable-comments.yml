@@ -1,0 +1,5 @@
+# Config for https://github.com/apps/customizable-comments
+
+template: |
+  ## Using $BRANCH
+  Here's a helpful URL based on the branch name: https://$BRANCH.something.example.com
