@@ -1,7 +1,10 @@
 # Config for https://github.com/apps/customizable-comments
 
+vars:
+  - $BRANCH_SUFFIX=TEST
+
 pull_request:
   opened:
     template: |
-      Here's a helpful URL based on the branch name: https://$BRANCH.something.example.com
+      Here's a helpful URL based on the branch name: https://$BRANCH-$BRANCH_SUFFIX.something.example.com
       Second line goes here.
