@@ -3,5 +3,5 @@
 pull_request:
   opened:
     template: |
-    Here's a helpful URL based on the branch name: https://$BRANCH.something.example.com
-    Second line goes here.
+      Here's a helpful URL based on the branch name: https://$BRANCH.something.example.com
+      Second line goes here.
