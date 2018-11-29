@@ -1,5 +1,7 @@
 # Config for https://github.com/apps/customizable-comments
 
-template: |
-  ## Using $BRANCH
-  Here's a helpful URL based on the branch name: https://$BRANCH.something.example.com
+pull_request:
+  opened:
+    template: |
+    Here's a helpful URL based on the branch name: https://$BRANCH.something.example.com
+    Second line goes here.
