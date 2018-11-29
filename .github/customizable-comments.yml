@@ -1,7 +1,8 @@
 # Config for https://github.com/apps/customizable-comments
 
 vars:
-  - $BRANCH_SUFFIX=TEST
+  - name: $BRANCH_SUFFIX
+    value: TEST_SUFFIX
 
 pull_request:
   opened:
