@@ -6,12 +6,14 @@
 
 ## Usage
 
-1. Install the [Customizable Comments GitHub App](https://github.com/apps/probot-cc) into the repos you wish to use it on.
-1. Add a `.github/customizable-comments.yml` configuration file to each repo.
+1. Install the [Customizable Comments (probot-cc) GitHub App](https://github.com/apps/probot-cc) into the repo(s) you wish to use it on.
+1. Add a `.github/customizable-comments.yml` configuration file to each repo. You can also
+
+Customizable Comments also supports [Probot Config](https://github.com/probot/probot-config), if you want to store your configuration files in a central repository. This allows you to share configurations between projects, and create an organization-wide configuration file by creating a repository named `.github` and file named `customizable-comments.yml`.
 
 ## Configuration options
 
-_Currently, this Probot App only supports `pull_request.opened` events._
+_📒 Currently, this Probot App only supports `pull_request.opened` events._
 
 _I would be happy to add more, just submit a PR or Issue with what you'd find useful._
 
@@ -55,6 +57,21 @@ npm install
 # Run the bot
 npm run dev
 ```
+
+## Deploying as GCF ☁️
+
+This Probot app supports deploying as a Google Cloud Function out of the box:
+
+```
+gcloud beta functions deploy gcf-name --env-vars-file .env.yaml --entry-point probot --runtime nodejs8 --trigger-http
+```
+
+Where:
+
+- `gcf-name`: desired name of the GCF
+- `.env.yaml`: see [.env.yaml.example](./.env.yaml.example)
+
+See [Probot Deployment docs](https://probot.github.io/docs/deployment/) for other deployment options.
 
 ## Contributing
 
