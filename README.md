@@ -1,6 +1,8 @@
-# customizable-comments
+# customizable-comments (probot-cc)
 
 > A GitHub App built with [Probot](https://github.com/probot/probot) that auto-replies with customizable comments based on template vars
+
+<img src="./probot-cc-sample.png" />
 
 ## Usage
 
@@ -40,11 +42,9 @@ pull_request:
 The above will auto-reply with a comment like so:
 
 ```
-      Here's a helpful URL based on the branch name: https://the-branch.something.example.com
-      And here's my custom value: my-custom
+Here's a helpful URL based on the branch name: https://the-branch.something.example.com
+And here's my custom value: my-custom
 ```
-
-> TK: Example image
 
 ## Local Development
 
