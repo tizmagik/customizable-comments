@@ -12,6 +12,9 @@
     "github",
     "probot-app"
   ],
+  "files": [
+    "src"
+  ],
   "main": "src/index.js",
   "scripts": {
     "dev": "nodemon",
