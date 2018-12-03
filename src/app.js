@@ -7,15 +7,13 @@ module.exports = app => {
   app.log("customizable-comments probot app loaded");
 
   app.on(PR_OPENED, async context => {
-    const { github /*, log, payload*/ } = context;
+    const { github } = context;
 
     const body = await template(context, PR_OPENED);
 
     if (!body) return;
 
     const params = context.issue({ body });
-
-    // console.dir({ body });
 
     return github.issues.createComment(params);
   });

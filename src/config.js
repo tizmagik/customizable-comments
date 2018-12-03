@@ -1,6 +1,6 @@
-const probotConfig = require("probot-config");
+const probotConfig = require('probot-config');
 
-const CONFIG_NAME = "customizable-comments.yml";
+const CONFIG_NAME = 'customizable-comments.yml';
 
 /*
 
@@ -12,7 +12,6 @@ pull_request:
       BRANCH is: $BRANCH
       BRANCH_SUFFIX is: $BRANCH_SUFFIX
       Done.
-
 
 */
 

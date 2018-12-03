@@ -19,7 +19,8 @@
   "scripts": {
     "dev": "nodemon",
     "start": "probot run ./src/index.js",
-    "lint": "standard --fix",
+    "lint": "semistandard --fix",
+    "pretest": "semistandard",
     "test": "jest",
     "test:watch": "jest --watch --notify --notifyMode=change"
   },
@@ -32,13 +33,13 @@
   "devDependencies": {
     "jest": "^23.6.0",
     "nodemon": "^1.18.7",
-    "smee-client": "^1.0.2",
-    "standard": "^10.0.3"
+    "semistandard": "^13.0.1",
+    "smee-client": "^1.0.2"
   },
   "engines": {
     "node": ">= 8.3.0"
   },
-  "standard": {
+  "semistandard": {
     "env": [
       "jest"
     ]
