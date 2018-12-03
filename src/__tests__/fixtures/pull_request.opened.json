@@ -1,0 +1,21 @@
+{
+  "id": "some-id",
+  "name": "pull_request",
+  "payload": {
+    "action": "opened",
+    "number": 123,
+    "pull_request": {
+      "state": "open",
+      "number": 1,
+      "head": {
+        "ref": "some-branch"
+      }
+    },
+    "repository": {
+      "name": "testing-pr-opened",
+      "owner": {
+        "login": "tizmagik"
+      }
+    }
+  }
+}
