@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`template stuff 1`] = `
+"
+    Here's a helpful URL based on the branch name: https://feature/PRJ-some.branch/test-123-(test-suffix).something.example.com
+    Second line goes here. 
+    BRANCH is: feature/PRJ-some.branch/test-123
+    BRANCH_SUFFIX is: (test-suffix)
+    BRANCH_SANITIZED is: feature-prj-some-branch-test-123
+    Done.
+        "
+`;
