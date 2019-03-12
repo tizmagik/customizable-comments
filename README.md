@@ -19,9 +19,10 @@ _I would be happy to add more, just submit a PR or Issue with what you'd find us
 
 ### Built-in template vars
 
-| name     | value                     | used when      |
-| -------- | ------------------------- | -------------- |
-| \$BRANCH | The branch name of the PR | `pull_request` |
+| name               | value                                                                                                            | used when      |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------- | -------------- |
+| \$BRANCH           | The branch name of the PR                                                                                        | `pull_request` |
+| \$BRANCH_SANITIZED | The branch name of the PR but sanitized as safe for URL prefixes (lowercased, `.` and `/` are replaced with `-`) | `pull_request` |
 
 ### Custom template vars
 

@@ -1,5 +1,5 @@
 const { Application } = require('probot');
-const autoreplyPreviewHelpersBot = require('../');
+const bot = require('../');
 const payload = require('./fixtures/pull_request.opened.json');
 
 jest.mock('probot-config');
@@ -10,7 +10,7 @@ describe('probot-cc', () => {
 
   beforeEach(() => {
     app = new Application();
-    app.load(autoreplyPreviewHelpersBot);
+    app.load(bot);
     github = {
       issues: {
         createComment: jest.fn().mockReturnValue(Promise.resolve())

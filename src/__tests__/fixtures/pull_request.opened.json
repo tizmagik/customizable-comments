@@ -8,7 +8,7 @@
       "state": "open",
       "number": 1,
       "head": {
-        "ref": "some-branch"
+        "ref": "feature/PRJ-some.branch/test-123"
       }
     },
     "repository": {

@@ -1,10 +1,10 @@
-const { template } = require("./template");
+const { template } = require('./template');
 
 // TODO: For now this only really supports PR_OPENED event
-const PR_OPENED = "pull_request.opened";
+const PR_OPENED = 'pull_request.opened';
 
 module.exports = app => {
-  app.log("customizable-comments probot app loaded");
+  app.log('customizable-comments probot app loaded');
 
   app.on(PR_OPENED, async context => {
     const { github } = context;
