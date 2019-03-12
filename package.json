@@ -17,6 +17,8 @@
   ],
   "main": "src/index.js",
   "scripts": {
+    "predeploy": "npm run test",
+    "deploy": "now && now alias",
     "dev": "nodemon",
     "start": "probot run ./src/index.js",
     "lint": "semistandard --fix",

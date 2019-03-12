@@ -1,11 +1,11 @@
-const prOpened = require("./fixtures/pull_request.opened.json");
+const prOpened = require('./fixtures/pull_request.opened.json');
 
-jest.setMock("probot-config", () => {
+jest.setMock('probot-config', () => {
   return Promise.resolve({
     vars: [
       {
-        name: "$BRANCH_SUFFIX",
-        value: "(test-suffix)"
+        name: '$BRANCH_SUFFIX',
+        value: '(test-suffix)'
       }
     ],
     pull_request: {
@@ -23,10 +23,10 @@ jest.setMock("probot-config", () => {
   });
 });
 
-describe("template", () => {
-  const { template } = require("../template");
-  it("stuff", async done => {
-    const compiled = await template(prOpened, "pull_request.opened");
+describe('template', () => {
+  const { template } = require('../template');
+  it('stuff', async done => {
+    const compiled = await template(prOpened, 'pull_request.opened');
     expect(compiled).toMatchSnapshot();
     done();
   });

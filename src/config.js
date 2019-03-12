@@ -1,6 +1,6 @@
-const probotConfig = require("probot-config");
+const probotConfig = require('probot-config');
 
-const CONFIG_NAME = "customizable-comments.yml";
+const CONFIG_NAME = 'customizable-comments.yml';
 
 /*
 
