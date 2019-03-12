@@ -1,4 +1,4 @@
-# Config for https://github.com/apps/customizable-comments
+# Config for https://github.com/apps/probot-cc
 
 vars:
   - name: $BRANCH_SUFFIX
@@ -11,4 +11,5 @@ pull_request:
       Second line goes here. 
       BRANCH is: $BRANCH
       BRANCH_SUFFIX is: $BRANCH_SUFFIX
+      BRANCH_SANITIZED is: $BRANCH_SANITIZED
       Done.
