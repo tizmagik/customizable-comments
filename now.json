@@ -10,7 +10,7 @@
   "builds": [
     {
       "src": "src/probot.js",
-      "use": "@now/node"
+      "use": "@vercel/node"
     }
   ],
   "routes": [

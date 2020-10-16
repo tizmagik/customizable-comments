@@ -18,7 +18,7 @@
   "main": "src/index.js",
   "scripts": {
     "predeploy": "npm run test",
-    "deploy": "now && now alias",
+    "deploy": "vercel && vercel alias",
     "dev": "nodemon",
     "start": "probot run ./src/index.js",
     "lint": "semistandard --fix",
@@ -29,14 +29,15 @@
   "dependencies": {
     "@probot/serverless-gcf": "^0.2.0",
     "lodash.get": "^4.4.2",
-    "probot": "^7.4.0",
-    "probot-config": "^1.0.0"
+    "probot": "^7.5.3",
+    "probot-config": "^1.1.0"
   },
   "devDependencies": {
-    "jest": "^24.4.0",
-    "nodemon": "^1.18.7",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.4",
     "semistandard": "^13.0.1",
-    "smee-client": "^1.0.2"
+    "smee-client": "^1.0.2",
+    "vercel": "^20.1.2"
   },
   "engines": {
     "node": ">= 8.3.0"
