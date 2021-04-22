@@ -24,7 +24,6 @@ describe("app", () => {
   });
 
   it("recieves pull_request.opened event", async function () {
-    console.log(process.env.WEBHOOK_SECRET);
     const mock = nock("https://api.github.com")
       .get(
         "/repos/tizmagik/testing-pr-opened/contents/.github%2Fcustomizable-comments.yml"
@@ -55,7 +54,7 @@ describe("app", () => {
     //   )
     //   .reply(201, {});
 
-    await probot.receive(require("./fixtures/pull_request.opened.json"));
+    await probot.receive(require("./fixtures/real.json"));
 
     // expect(mock2.activeMocks()).toEqual([]);
   });

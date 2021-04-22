@@ -19,12 +19,7 @@ const template = async (
   // get config
   const config = await getConfig(context);
 
-  console.log({ config, event });
-  console.log(config.pull_request);
-
   let templ = get(config, `${event}.template`, "");
-
-  console.log({ templ });
 
   const branchName = context.payload.pull_request.head.ref;
   const branchNameSanitized = context.payload.pull_request.head.ref
@@ -37,8 +32,6 @@ const template = async (
   vars.push({ name: BRANCH, value: branchName });
 
   templ = injectVars(vars, templ);
-
-  console.log(templ);
 
   return templ;
 };

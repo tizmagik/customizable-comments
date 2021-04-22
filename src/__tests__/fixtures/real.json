@@ -1,4 +1,6 @@
 {
+  "id": "some-id",
+  "name": "pull_request",
   "event": "pull_request",
   "payload": {
     "action": "opened",
