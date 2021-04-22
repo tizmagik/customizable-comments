@@ -7,15 +7,11 @@
 ## Usage
 
 1. Install the [Customizable Comments (probot-cc) GitHub App](https://github.com/apps/probot-cc) into the repo(s) you wish to use it on.
-1. Add a `.github/customizable-comments.yml` configuration file to each repo. You can also
-
-Customizable Comments also supports [Probot Config](https://github.com/probot/probot-config), if you want to store your configuration files in a central repository. This allows you to share configurations between projects, and create an organization-wide configuration file by creating a repository named `.github` and file named `customizable-comments.yml`.
+1. Add a `.github/customizable-comments.yml` configuration file to each repo.
 
 ## Configuration options
 
-_📒 Currently, this Probot App only supports `pull_request.opened` events._
-
-_I would be happy to add more, just submit a PR or Issue with what you'd find useful._
+_📒 Currently, this Probot App only supports `pull_request.opened` events. I would be happy to add more, just submit a PR or Issue with what you'd find useful._
 
 ### Built-in template vars
 
@@ -59,7 +55,13 @@ npm install
 npm run dev
 ```
 
-## Deploying as GCF ☁️
+## Rather host yourself?
+
+Feel free to host this app yourself "on-prem" if you like. It should support Lambda or Google Cloud Functions with minimal fuss:
+
+### Deploying as GCF ☁️
+
+> Note: This is currently disabled in the code, since I'm deploying to Vercel for public use, but can be re-enabled easily if you're self-hosting.
 
 This Probot app supports deploying as a Google Cloud Function out of the box:
 
