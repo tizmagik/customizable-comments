@@ -1,10 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`probot-cc on pull_request.opened creates comment with preview sandbox helpers 1`] = `
+exports[`app recieves pull_request.opened event 1`] = `
 Object {
-  "body": "_You have succesfully installed probot-cc, now please create a \`.github/customizable-comments.yml\` file in your repository to customize this message._",
-  "number": 1,
-  "owner": "tizmagik",
-  "repo": "testing-pr-opened",
+  "body": "Here's a helpful URL based on the branch name: https://tizmagik-patch-2-tizmagik-patch-2_SUFFIX.something.example.com
+Second line goes here.
+BRANCH is: tizmagik-patch-2
+BRANCH_SUFFIX is: tizmagik-patch-2_SUFFIX
+Done.",
 }
 `;

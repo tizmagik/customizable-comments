@@ -1,6 +1,6 @@
 {
   "name": "customizable-comments",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Probot app to auto-reply with customizable comments based on template vars",
   "author": "Jeremy Gayed (https://twitter.com/tizmagik)",
   "license": "ISC",
@@ -29,18 +29,15 @@
   "dependencies": {
     "@probot/serverless-gcf": "^0.2.0",
     "lodash.get": "^4.4.2",
-    "probot": "^7.5.3",
-    "probot-config": "^1.1.0"
+    "probot": "^11.2.1"
   },
   "devDependencies": {
     "jest": "^24.9.0",
+    "nock": "^13.0.11",
     "nodemon": "^1.19.4",
     "semistandard": "^13.0.1",
     "smee-client": "^1.0.2",
-    "vercel": "^20.1.2"
-  },
-  "engines": {
-    "node": ">= 8.3.0"
+    "vercel": "^22.0.0"
   },
   "semistandard": {
     "env": [

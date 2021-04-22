@@ -1,30 +1,54 @@
-const { Application } = require('probot');
-const bot = require('../');
-const payload = require('./fixtures/pull_request.opened.json');
+const nock = require('nock');
+nock.disableNetConnect();
 
-jest.mock('probot-config');
+const { Probot, ProbotOctokit } = require('probot');
 
-describe('probot-cc', () => {
-  let app;
-  let github;
+const app = require('../app');
 
+describe('app', () => {
+  /** @type {import('probot').Probot */
+  let probot;
   beforeEach(() => {
-    app = new Application();
-    app.load(bot);
-    github = {
-      issues: {
-        createComment: jest.fn().mockReturnValue(Promise.resolve())
-      }
-    };
-    app.auth = () => Promise.resolve(github);
+    probot = new Probot({
+      // simple authentication as alternative to appId/privateKey
+      githubToken: 'test',
+      // disable logs
+      logLevel: 'warn',
+      // disable request throttling and retries
+      Octokit: ProbotOctokit.defaults({
+        throttle: { enabled: false },
+        retry: { enabled: false }
+      })
+    });
+    probot.load(app);
   });
 
-  describe('on pull_request.opened', () => {
-    it('creates comment with preview sandbox helpers', async () => {
-      await app.receive(payload);
+  it('recieves pull_request.opened event', async function () {
+    const mock = nock('https://api.github.com')
+      .get('/repos/tizmagik/test/contents/.github%2Fcustomizable-comments.yml')
+      .reply(
+        200,
+        JSON.stringify({
+          pull_request: {
+            opened: {
+              template: `Here's a helpful URL based on the branch name: https://$BRANCH-$BRANCH_SUFFIX.something.example.com
+Second line goes here.
+BRANCH is: $BRANCH
+BRANCH_SUFFIX is: $BRANCH_SUFFIX
+Done.`
+            }
+          }
+        })
+      )
+      .post('/repos/tizmagik/test/issues/3/comments', (requestBody) => {
+        expect(requestBody).toMatchSnapshot();
 
-      expect(github.issues.createComment).toHaveBeenCalled();
-      expect(github.issues.createComment.mock.calls[0][0]).toMatchSnapshot();
-    });
+        return true;
+      })
+      .reply(200);
+
+    await probot.receive(require('./fixtures/real.json'));
+
+    expect(mock.activeMocks()).toEqual([]);
   });
 });

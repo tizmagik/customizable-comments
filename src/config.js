@@ -1,5 +1,3 @@
-const probotConfig = require('probot-config');
-
 const CONFIG_NAME = 'customizable-comments.yml';
 
 /*
@@ -15,7 +13,7 @@ pull_request:
 
 */
 
-const getConfig = async context => {
+const getConfig = async (context) => {
   const defaultConfig = {
     pull_request: {
       opened: {
@@ -24,9 +22,7 @@ const getConfig = async context => {
     }
   };
 
-  const config = (await probotConfig(context, CONFIG_NAME)) || defaultConfig;
-
-  return config;
+  return context.config(CONFIG_NAME, defaultConfig);
 };
 
 module.exports = getConfig;
