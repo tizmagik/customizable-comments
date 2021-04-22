@@ -7,7 +7,7 @@ module.exports = (app) => {
   app.log("customizable-comments probot app loaded");
 
   app.on(PR_OPENED, async (context) => {
-    app.log("got PR open event", context);
+    app.log("applog: got PR open event", context, context.issue());
     console.log("got PR open event", context.issue(), context);
 
     /** @type {import('probot').Context */
