@@ -12,7 +12,10 @@ const injectVars = (vars, template) => {
   return newTemplate;
 };
 
-const template = async (context, event) => {
+const template = async (
+  /** @type { import('probot').Context } */ context,
+  /** @type { string } */ event
+) => {
   // get config
   const config = await getConfig(context);
 
