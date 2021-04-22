@@ -1,6 +1,6 @@
 # customizable-comments (probot-cc)
 
-> A GitHub App built with [Probot](https://github.com/probot/probot) that auto-replies with customizable comments based on template vars
+A GitHub App built with [Probot](https://github.com/probot/probot) that auto-replies with customizable comments based on template vars
 
 <img src="./public/probot-cc-sample.png" />
 
