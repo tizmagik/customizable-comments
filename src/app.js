@@ -1,20 +1,25 @@
-const { template } = require('./template');
+const { template } = require("./template");
 
 // TODO: For now this only really supports PR_OPENED event
-const PR_OPENED = 'pull_request.opened';
+const PR_OPENED = "pull_request.opened";
 
-module.exports = app => {
-  app.log('customizable-comments probot app loaded');
+module.exports = (app) => {
+  app.log("customizable-comments probot app loaded");
 
-  app.on(PR_OPENED, async context => {
-    const { github } = context;
+  app.on(PR_OPENED, async (context) => {
+    console.log("got PR open event", context.getConfig);
+
+    /** @type {import('probot').Context */
+    const { octokit, issue } = context;
 
     const body = await template(context, PR_OPENED);
 
+    console.log("body is", { body });
+
     if (!body) return;
 
-    const params = context.issue({ body });
+    const params = issue({ body });
 
-    return github.issues.createComment(params);
+    return octokit.issues.createComment(params);
   });
 };

@@ -1,30 +1,61 @@
-const { Application } = require('probot');
-const bot = require('../');
-const payload = require('./fixtures/pull_request.opened.json');
+const nock = require("nock");
+nock.disableNetConnect();
 
-jest.mock('probot-config');
+const { Probot, ProbotOctokit } = require("probot");
 
-describe('probot-cc', () => {
-  let app;
-  let github;
+const app = require("../app");
 
+describe("app", () => {
+  /** @type {import('probot').Probot */
+  let probot;
   beforeEach(() => {
-    app = new Application();
-    app.load(bot);
-    github = {
-      issues: {
-        createComment: jest.fn().mockReturnValue(Promise.resolve())
-      }
-    };
-    app.auth = () => Promise.resolve(github);
+    probot = new Probot({
+      // simple authentication as alternative to appId/privateKey
+      githubToken: "test",
+      // disable logs
+      logLevel: "warn",
+      // disable request throttling and retries
+      Octokit: ProbotOctokit.defaults({
+        throttle: { enabled: false },
+        retry: { enabled: false },
+      }),
+    });
+    probot.load(app);
   });
 
-  describe('on pull_request.opened', () => {
-    it('creates comment with preview sandbox helpers', async () => {
-      await app.receive(payload);
+  it("recieves pull_request.opened event", async function () {
+    const mock = nock("https://api.github.com")
+      .get(
+        "/repos/tizmagik/testing-pr-opened/contents/.github%2Fcustomizable-comments.yml"
+      )
+      .reply(200, {
+        pull_request: {
+          opened: {
+            template: "test",
+          },
+        },
+      });
 
-      expect(github.issues.createComment).toHaveBeenCalled();
-      expect(github.issues.createComment.mock.calls[0][0]).toMatchSnapshot();
+    const mock2 = nock("https://api.github.com").post(/.*/, (requestBody) => {
+      console.log({ requestBody });
+      return true;
     });
+
+    // const mock2 = nock("https://api.github.com")
+    //   // create new check run
+    //   .post(
+    //     "/repos/tizmagik/testing-pr-opened/contents/.github%2Fcustomizable-comments.yml",
+    //     (requestBody) => {
+    //       console.log("in post", requestBody);
+    //       expect(requestBody).toEqual({ body: "Hello, World!" });
+
+    //       return true;
+    //     }
+    //   )
+    //   .reply(201, {});
+
+    await probot.receive(require("./fixtures/pull_request.opened.json"));
+
+    // expect(mock2.activeMocks()).toEqual([]);
   });
 });

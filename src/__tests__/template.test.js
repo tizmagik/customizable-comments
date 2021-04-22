@@ -1,6 +1,6 @@
 const prOpened = require('./fixtures/pull_request.opened.json');
 
-jest.setMock('probot-config', () => {
+jest.setMock('../config', () => {
   return Promise.resolve({
     vars: [
       {
