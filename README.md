@@ -2,7 +2,7 @@
 
 > A GitHub App built with [Probot](https://github.com/probot/probot) that auto-replies with customizable comments based on template vars
 
-<img src="./probot-cc-sample.png" />
+<img src="./public/probot-cc-sample.png" />
 
 ## Usage
 
