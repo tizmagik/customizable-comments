@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app recieves pull_request.opened event 1`] = `
+Object {
+  "body": "Here's a helpful URL based on the branch name: https://tizmagik-patch-2-tizmagik-patch-2_SUFFIX.something.example.com
+Second line goes here.
+BRANCH is: tizmagik-patch-2
+BRANCH_SUFFIX is: tizmagik-patch-2_SUFFIX
+Done.",
+}
+`;

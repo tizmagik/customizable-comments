@@ -25,37 +25,30 @@ describe("app", () => {
 
   it("recieves pull_request.opened event", async function () {
     const mock = nock("https://api.github.com")
-      .get(
-        "/repos/tizmagik/testing-pr-opened/contents/.github%2Fcustomizable-comments.yml"
-      )
-      .reply(200, {
-        pull_request: {
-          opened: {
-            template: "test",
+      .get("/repos/tizmagik/test/contents/.github%2Fcustomizable-comments.yml")
+      .reply(
+        200,
+        JSON.stringify({
+          pull_request: {
+            opened: {
+              template: `Here's a helpful URL based on the branch name: https://$BRANCH-$BRANCH_SUFFIX.something.example.com
+Second line goes here.
+BRANCH is: $BRANCH
+BRANCH_SUFFIX is: $BRANCH_SUFFIX
+Done.`,
+            },
           },
-        },
-      });
+        })
+      )
+      .post("/repos/tizmagik/test/issues/3/comments", (requestBody) => {
+        expect(requestBody).toMatchSnapshot();
 
-    const mock2 = nock("https://api.github.com").post(/.*/, (requestBody) => {
-      console.log({ requestBody });
-      return true;
-    });
-
-    // const mock2 = nock("https://api.github.com")
-    //   // create new check run
-    //   .post(
-    //     "/repos/tizmagik/testing-pr-opened/contents/.github%2Fcustomizable-comments.yml",
-    //     (requestBody) => {
-    //       console.log("in post", requestBody);
-    //       expect(requestBody).toEqual({ body: "Hello, World!" });
-
-    //       return true;
-    //     }
-    //   )
-    //   .reply(201, {});
+        return true;
+      })
+      .reply(200);
 
     await probot.receive(require("./fixtures/real.json"));
 
-    // expect(mock2.activeMocks()).toEqual([]);
+    expect(mock.activeMocks()).toEqual([]);
   });
 });

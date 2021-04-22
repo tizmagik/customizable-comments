@@ -7,12 +7,12 @@ module.exports = (/** @type { import('probot').Probot } */ app) => {
   app.log("customizable-comments probot app loaded");
 
   app.on(PR_OPENED, async (context) => {
-    console.log("got PR open event", context.issue({}));
+    app.log("got PR open event", context.issue({}));
 
     const body = await template(context, PR_OPENED);
 
     if (!body) {
-      console.log("No template found, exiting...", context.issue({}));
+      app.log("No template found, exiting...", context.issue({}));
       return;
     }
 
