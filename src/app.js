@@ -7,7 +7,8 @@ module.exports = (app) => {
   app.log("customizable-comments probot app loaded");
 
   app.on(PR_OPENED, async (context) => {
-    console.log("got PR open event", context.getConfig);
+    app.log("got PR open event", context);
+    console.log("got PR open event", context.issue(), context);
 
     /** @type {import('probot').Context */
     const { octokit, issue } = context;
