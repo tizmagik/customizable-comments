@@ -1,4 +1,4 @@
-const CONFIG_NAME = "customizable-comments.yml";
+const CONFIG_NAME = 'customizable-comments.yml';
 
 /*
 
@@ -17,9 +17,9 @@ const getConfig = async (context) => {
   const defaultConfig = {
     pull_request: {
       opened: {
-        template: `_You have succesfully installed probot-cc, now please create a \`.github/${CONFIG_NAME}\` file in your repository to customize this message._`,
-      },
-    },
+        template: `_You have succesfully installed probot-cc, now please create a \`.github/${CONFIG_NAME}\` file in your repository to customize this message._`
+      }
+    }
   };
 
   return context.config(CONFIG_NAME, defaultConfig);

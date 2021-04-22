@@ -1,31 +1,31 @@
-const nock = require("nock");
+const nock = require('nock');
 nock.disableNetConnect();
 
-const { Probot, ProbotOctokit } = require("probot");
+const { Probot, ProbotOctokit } = require('probot');
 
-const app = require("../app");
+const app = require('../app');
 
-describe("app", () => {
+describe('app', () => {
   /** @type {import('probot').Probot */
   let probot;
   beforeEach(() => {
     probot = new Probot({
       // simple authentication as alternative to appId/privateKey
-      githubToken: "test",
+      githubToken: 'test',
       // disable logs
-      logLevel: "warn",
+      logLevel: 'warn',
       // disable request throttling and retries
       Octokit: ProbotOctokit.defaults({
         throttle: { enabled: false },
-        retry: { enabled: false },
-      }),
+        retry: { enabled: false }
+      })
     });
     probot.load(app);
   });
 
-  it("recieves pull_request.opened event", async function () {
-    const mock = nock("https://api.github.com")
-      .get("/repos/tizmagik/test/contents/.github%2Fcustomizable-comments.yml")
+  it('recieves pull_request.opened event', async function () {
+    const mock = nock('https://api.github.com')
+      .get('/repos/tizmagik/test/contents/.github%2Fcustomizable-comments.yml')
       .reply(
         200,
         JSON.stringify({
@@ -35,19 +35,19 @@ describe("app", () => {
 Second line goes here.
 BRANCH is: $BRANCH
 BRANCH_SUFFIX is: $BRANCH_SUFFIX
-Done.`,
-            },
-          },
+Done.`
+            }
+          }
         })
       )
-      .post("/repos/tizmagik/test/issues/3/comments", (requestBody) => {
+      .post('/repos/tizmagik/test/issues/3/comments', (requestBody) => {
         expect(requestBody).toMatchSnapshot();
 
         return true;
       })
       .reply(200);
 
-    await probot.receive(require("./fixtures/real.json"));
+    await probot.receive(require('./fixtures/real.json'));
 
     expect(mock.activeMocks()).toEqual([]);
   });

@@ -1,13 +1,13 @@
-const getConfig = require("./config");
-const get = require("lodash.get");
+const getConfig = require('./config');
+const get = require('lodash.get');
 
-const BRANCH = "$BRANCH";
-const BRANCH_SANITIZED = "$BRANCH_SANITIZED";
+const BRANCH = '$BRANCH';
+const BRANCH_SANITIZED = '$BRANCH_SANITIZED';
 
 const injectVars = (vars, template) => {
   let newTemplate = template;
   vars.forEach(({ name, value }) => {
-    newTemplate = newTemplate.replace(new RegExp(`\\${name}`, "g"), value);
+    newTemplate = newTemplate.replace(new RegExp(`\\${name}`, 'g'), value);
   });
   return newTemplate;
 };
@@ -18,11 +18,11 @@ const template = async (
 ) => {
   // get config
   const config = await getConfig(context);
-  let templ = get(config, `${event}.template`, "");
+  let templ = get(config, `${event}.template`, '');
 
   const branchName = context.payload.pull_request.head.ref;
   const branchNameSanitized = context.payload.pull_request.head.ref
-    .replace(/[/|.]/g, "-")
+    .replace(/[/|.]/g, '-')
     .toLowerCase();
 
   const vars = config.vars || [];
@@ -34,5 +34,5 @@ const template = async (
 };
 
 module.exports = {
-  template,
+  template
 };
